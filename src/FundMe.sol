@@ -26,7 +26,7 @@ contract FundMe {
 
     function fund() public payable {
         require(msg.value.getConversionRate(s_priceFeed) >=MinimumUSD, "You need to spend more ETH!");
-        // require(PriceConverter.getConversionRate(msg.value) >= MINIMUM_USD, "You need to spend more ETH!");
+        
         s_AddressToAmountFunded[msg.sender] += msg.value;
         s_Funders.push(msg.sender);
     }
@@ -36,7 +36,7 @@ contract FundMe {
     }
 
     modifier OnlyOwner() {
-        // require(msg.sender == owner);
+       
         if (msg.sender != i_owner) revert FundMe_NotOwner();
         _;
     }
